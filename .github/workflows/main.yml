@@ -49,36 +49,6 @@ jobs:
       - name: Install Node.js (latest version)
         uses: actions/setup-node@v2
 
-      - name: Create .env file
-        run: |
-          echo "APP_NAME=Laravel" > .env
-          echo "APP_URL=https://cms.30glow.site" > .env
-          echo "APP_ENV=production" >> .env
-          echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
-          echo "APP_DEBUG=true" >> .env
-          echo "LOG_CHANNEL=stack" >> .env
-          echo "DB_CONNECTION=mysql" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_PORT=3306" >> .env
-          echo "DB_DATABASE=${{ secrets.DB_NAME }}" >> .env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-          echo "MAIL_MAILER=smtp" >> .env
-          echo "MAIL_HOST=smtp.gmail.com" >> .env
-          echo "MAIL_PORT=465" >> .env
-          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> .env
-          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
-          echo "MAIL_ENCRYPTION=tls" >> .env
-          echo "MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}" >> .env
-          echo "MAIL_FROM_NAME='Dashboard'" >> .env
-          # echo "VITE_OPEN_AI_KEY=${{ secrets.VITE_OPEN_AI_KEY }}" >> .env
-          # echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_KEY }}" >> .env
-          # echo "VITE_OPEN_AI_KEY=${{ secrets.VITE_OPEN_AI_KEY }}" >> .env
-          # echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env
-          echo "QUEUE_CONNECTION=database" >> .env
-          echo "SESSION_DRIVER=file" >> .env
-          echo "SESSION_LIFETIME=360" >> .env
-
       - name: Install NPM dependencies
         run: npm install
         continue-on-error: false

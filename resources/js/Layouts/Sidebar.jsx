@@ -1,63 +1,66 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
 import Dropdowns from "../components/Dropdowns";
+import { Nav } from "react-bootstrap";
+import NavLink from "../components/NavLink";
 
 const Sidebar = ({ children, collapsed }) => {
     return (
         <div className="d-flex">
             <div
-                className={`d-flex flex-column flex-shrink-0 p-3 bg-light`}
+                className={`d-flex flex-column flex-shrink-0 p-3 bg-light sticky-top`}
                 style={{ width: collapsed ? "80px" : "250px", height: "100vh" }}
             >
                 <Link
                     to="/"
-                    className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
+                    className="d-flex align-items-center mb-0 mb-md-0 mx-md-auto text-decoration-none"
                 >
                     {!collapsed ? (
                         <span className="fs-4">CMS Dashboard</span>
                     ) : (
-                        <i className="bi bi-speedometer2 fs-4"></i>
+                        <i className="bi bi-speedometer2 fs-4 mx-auto"></i>
                     )}
                 </Link>
                 <hr />
-                <ul className="nav nav-pills flex-column mb-auto">
-                    <li className="nav-item">
-                        <Link
+                <Nav className="nav nav-pills flex-column mb-auto">
+                    <Nav.Item>
+                        <NavLink
                             to="/dashboard"
-                            className="nav-link active d-flex align-items-center"
+                            className="d-flex align-items-center"
+                            active="true"
                         >
-                            <i className="bi bi-speedometer2 me-2"></i>{" "}
+                            <i className="bi bi-speedometer2 me-2"></i>
                             {!collapsed && "Dashboard"}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
                             to="/posts"
-                            className="nav-link d-flex align-items-center"
+                            className="d-flex align-items-center"
                         >
-                            <i className="bi bi-file-earmark-text me-2"></i>{" "}
+                            <i className="bi bi-file-earmark-text me-2"></i>
                             {!collapsed && "Posts"}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
                             to="/users"
-                            className="nav-link d-flex align-items-center"
+                            className="d-flex align-items-center"
                         >
-                            <i className="bi bi-people me-2"></i>{" "}
+                            <i className="bi bi-people me-2"></i>
                             {!collapsed && "Users"}
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
                             to="/settings"
-                            className="nav-link d-flex align-items-center"
+                            className="d-flex align-items-center"
                         >
                             <i className="bi bi-gear me-2"></i>{" "}
                             {!collapsed && "Settings"}
-                        </Link>
-                    </li>
-                </ul>
+                        </NavLink>
+                    </Nav.Item>
+                </Nav>
                 <hr />
                 <Dropdowns
                     className="d-flex align-items-center text-decoration-none"
@@ -68,7 +71,9 @@ const Sidebar = ({ children, collapsed }) => {
                                 className="bi bi-person-circle me-2"
                                 style={{ fontSize: "32px" }}
                             ></i>
-                            {!collapsed && <strong className="ms-2">Admin</strong>}
+                            {!collapsed && (
+                                <strong className="ms-2">Admin</strong>
+                            )}
                         </>
                     }
                     align="start"
@@ -77,31 +82,6 @@ const Sidebar = ({ children, collapsed }) => {
                     <Dropdowns.Item href="/settings">Settings</Dropdowns.Item>
                     <Dropdowns.Item href="/logout">Sign out</Dropdowns.Item>
                 </Dropdowns>
-                <div className="dropdown">
-                    <ul
-                        className="dropdown-menu text-small"
-                        aria-labelledby="dropdownUser"
-                    >
-                        <li>
-                            <Link className="dropdown-item" to="/profile">
-                                Profile
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="dropdown-item" to="/settings">
-                                Settings
-                            </Link>
-                        </li>
-                        <li>
-                            <hr className="dropdown-divider" />
-                        </li>
-                        <li>
-                            <Link className="dropdown-item" to="/logout">
-                                Sign out
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div className="flex-grow-1">{children}</div>
         </div>

@@ -5,11 +5,14 @@ import Buttons from "../components/Buttons";
 function Header({ collapsed, toggleSidebar }) {
     return (
         <>
-            <header>
+            <header className="bg-body-tertiary">
                 <Navbar expand="lg" className="bg-body-tertiary">
                     <Container fluid>
                         <Navbar.Brand>
-                            <Buttons onClick={toggleSidebar} variant="secondary">
+                            <Buttons
+                                onClick={toggleSidebar}
+                                variant="secondary"
+                            >
                                 {collapsed ? (
                                     <i className="bi bi-chevron-right"></i>
                                 ) : (

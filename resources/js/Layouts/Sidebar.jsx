@@ -1,0 +1,91 @@
+import { Link } from "@inertiajs/react";
+import React from "react";
+import Dropdowns from "../components/Dropdowns";
+import { Nav } from "react-bootstrap";
+import NavLink from "../components/NavLink";
+
+const Sidebar = ({ children, collapsed }) => {
+    return (
+        <div className="d-flex">
+            <div
+                className={`d-flex flex-column flex-shrink-0 p-3 bg-light sticky-top`}
+                style={{ width: collapsed ? "80px" : "250px", height: "100vh" }}
+            >
+                <Link
+                    to="/"
+                    className="d-flex align-items-center mb-0 mb-md-0 mx-md-auto text-decoration-none"
+                >
+                    {!collapsed ? (
+                        <span className="fs-4">CMS Dashboard</span>
+                    ) : (
+                        <i className="bi bi-speedometer2 fs-4 mx-auto"></i>
+                    )}
+                </Link>
+                <hr />
+                <Nav className="nav nav-pills flex-column mb-auto">
+                    <Nav.Item>
+                        <NavLink
+                            to="/dashboard"
+                            className="d-flex align-items-center"
+                            active="true"
+                        >
+                            <i className="bi bi-speedometer2 me-2"></i>
+                            {!collapsed && "Dashboard"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/posts"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-file-earmark-text me-2"></i>
+                            {!collapsed && "Posts"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/users"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-people me-2"></i>
+                            {!collapsed && "Users"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/settings"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Settings"}
+                        </NavLink>
+                    </Nav.Item>
+                </Nav>
+                <hr />
+                <Dropdowns
+                    className="d-flex align-items-center text-decoration-none"
+                    as="div"
+                    trigger={
+                        <>
+                            <i
+                                className="bi bi-person-circle me-2"
+                                style={{ fontSize: "32px" }}
+                            ></i>
+                            {!collapsed && (
+                                <strong className="ms-2">Admin</strong>
+                            )}
+                        </>
+                    }
+                    align="start"
+                >
+                    <Dropdowns.Item href="/profile">Profile</Dropdowns.Item>
+                    <Dropdowns.Item href="/settings">Settings</Dropdowns.Item>
+                    <Dropdowns.Item href="/logout">Sign out</Dropdowns.Item>
+                </Dropdowns>
+            </div>
+            <div className="flex-grow-1">{children}</div>
+        </div>
+    );
+};
+
+export default Sidebar;

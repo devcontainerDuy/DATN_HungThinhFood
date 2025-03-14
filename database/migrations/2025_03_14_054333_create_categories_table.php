@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
-            $table->string('position');
-            $table->string('status')->default(1);
+            $table->text('description');
+            $table->integer('position');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
 
         if (Schema::hasTable('categories') && Schema::hasTable('products')) {
             Schema::create('categories_has_products', function (Blueprint $table) {
-                $table->foreignId('category_id')->constrained()->onDelete('restrict');
-                $table->foreignId('product_id')->constrained()->onDelete('restrict');
+                $table->foreignId('category_id')->constrained()->restrictOnDelete();
+                $table->foreignId('product_id')->constrained()->restrictOnDelete();
             });
         }
     }

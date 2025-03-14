@@ -1,12 +1,22 @@
-import React, { useEffect } from "react";
-import Chart from "chart.js/auto";
+import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
+import Header from "./Header";
 
-function Index() {
+function Index({ children }) {
+    const [collapsed, setCollapsed] = useState(false);
+
+    const toggleSidebar = () => {
+        setCollapsed(!collapsed);
+    };
+
     return (
         <>
-            <Header></Header>
-
-            <Footer></Footer>
+            <Sidebar collapsed={collapsed} >
+                <Header collapsed={collapsed} toggleSidebar={toggleSidebar} />
+                <main>{children}</main>
+                <Footer />
+            </Sidebar>
         </>
     );
 }

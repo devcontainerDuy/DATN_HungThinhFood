@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../../Layouts/Index";
 // import Chart from "chart.js/auto";
 function Index() {
     // useEffect(() => {
@@ -63,8 +64,7 @@ function Index() {
     // }, []);
 
     return (
-        <>
-            {" "}
+        <Layout>
             <div
                 className="container-fluid p-4"
                 style={{ backgroundColor: "#161824" }}
@@ -190,7 +190,7 @@ function Index() {
                     </div>
                 </div>
             </div>
-        </>
+        </Layout>
     );
 }
 

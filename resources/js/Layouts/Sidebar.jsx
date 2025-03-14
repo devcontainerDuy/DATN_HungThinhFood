@@ -1,8 +1,8 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
-import Dropdowns from "../components/Dropdowns";
+import Dropdowns from "@components/Dropdowns";
 import { Nav } from "react-bootstrap";
-import NavLink from "../components/NavLink";
+import NavLink from "@components/NavLink";
 
 const Sidebar = ({ children, collapsed }) => {
     return (

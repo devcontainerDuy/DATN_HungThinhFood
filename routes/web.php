@@ -9,3 +9,16 @@ Route::get('/', function () {
         "user_name" => "John Doe",
     ]);
 });
+Route::get('/baiviet', function () {
+    return Inertia::render('AdminBaiviet/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});
+
+Route::get('/nhaphanphoi', function () {
+    return Inertia::render('AdminNCC/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});

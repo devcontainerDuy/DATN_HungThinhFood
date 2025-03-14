@@ -3,10 +3,11 @@ import React from "react";
 function Baiviet() {
     return (
         <>
+            {" "}
             <div className="container">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <p className="mb-0">Số lượng bài viết: 5</p>
-                    <a to="/postCreate" className="btn btn-primary">
+                    <a href="#" className="btn btn-primary">
                         + Thêm bài viết
                     </a>
                 </div>
@@ -27,7 +28,10 @@ function Baiviet() {
                                 <td>
                                     <div
                                         className="bg-secondary rounded"
-                                        style="width: 50px; height: 50px;"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
                                     ></div>
                                 </td>
                                 <td>Bánh cóng - Đặc sản Sóc Trăng</td>
@@ -53,7 +57,10 @@ function Baiviet() {
                                 <td>
                                     <div
                                         className="bg-secondary rounded"
-                                        style="width: 50px; height: 50px;"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
                                     ></div>
                                 </td>
                                 <td>Bún nước lèo - Hương vị truyền thống</td>
@@ -79,7 +86,10 @@ function Baiviet() {
                                 <td>
                                     <div
                                         className="bg-secondary rounded"
-                                        style="width: 50px; height: 50px;"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
                                     ></div>
                                 </td>
                                 <td>Bánh Pía - Ngọt ngào hương sầu riêng</td>
@@ -105,7 +115,10 @@ function Baiviet() {
                                 <td>
                                     <div
                                         className="bg-secondary rounded"
-                                        style="width: 50px; height: 50px;"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
                                     ></div>
                                 </td>
                                 <td>Bánh Tét - Hương vị ngày Tết</td>
@@ -131,7 +144,10 @@ function Baiviet() {
                                 <td>
                                     <div
                                         className="bg-secondary rounded"
-                                        style="width: 50px; height: 50px;"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
                                     ></div>
                                 </td>
                                 <td>Cháo cá lóc rau đắng - Đậm đà miền Tây</td>

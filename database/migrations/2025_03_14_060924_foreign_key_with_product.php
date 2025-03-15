@@ -14,12 +14,12 @@ return new class extends Migration
         if (Schema::hasTable('products')) {
             if (Schema::hasTable('brands')) {
                 Schema::table('products', function (Blueprint $table) {
-                    $table->foreignId('brand_id')->constrained('brands')->onDelete('restrict');
+                    $table->foreignId('brand_id')->constrained('brands')->restrictOnDelete();
                 });
             }
             if (Schema::hasTable('variants')) {
                 Schema::table('products', function (Blueprint $table) {
-                    $table->foreignId('variants_id')->constrained('variants')->onDelete('restrict');
+                    $table->foreignId('variants_id')->constrained('variants')->restrictOnDelete();
                 });
             }
         }

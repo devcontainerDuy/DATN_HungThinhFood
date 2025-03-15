@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('mass_id');
+            $table->unsignedBigInteger('core_id');
             $table->decimal('price', 8, 2);
             $table->decimal('sale', 8, 2);
             $table->integer('in_stock');

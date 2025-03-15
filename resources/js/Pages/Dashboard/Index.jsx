@@ -1,6 +1,7 @@
 import React from "react";
-import Layout from "../../Layouts/Index";
 import Baiviet from "../../Components/Baiviet";
+import Layout from "@layouts/Index";
+
 // import Chart from "chart.js/auto";
 function Index() {
     // useEffect(() => {

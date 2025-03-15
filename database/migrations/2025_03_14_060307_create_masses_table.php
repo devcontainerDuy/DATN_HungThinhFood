@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('masses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('mass_value', 3, 2);
+            $table->decimal('mass_value', 6, 3)->default(0);
             $table->timestamps();
         });
 
-        if (Schema::hasTable('variants') && Schema::hasTable('products')) {
+        if (Schema::hasTable('variants') || Schema::hasTable('products')) {
             Schema::table('variants', function (Blueprint $table) {
-                $table->foreignId('mass_id')->constrained()->onDelete('restrict');
+                $table->foreign('mass_id')->references('id')->on('masses')->restrictOnDelete();
             });
         }
     }

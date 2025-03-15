@@ -152,7 +152,7 @@ const Sidebar = ({ children, collapsed }) => {
                 >
                     <Dropdowns.Item href="/profile">Profile</Dropdowns.Item>
                     <Dropdowns.Item href="/settings">Settings</Dropdowns.Item>
-                    <Dropdowns.Item href="/logout">Sign out</Dropdowns.Item>
+                    <Dropdowns.Item href="/login">Sign in</Dropdowns.Item>
                 </Dropdowns>
             </div>
             <div className="flex-grow-1">{children}</div>

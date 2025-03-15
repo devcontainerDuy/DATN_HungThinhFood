@@ -11,7 +11,10 @@ function Index() {
                     <div className="container">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <p className="mb-0">Số lượng bài viết: 5</p>
-                            <Link href="#" className="btn btn-primary">
+                            <Link
+                                href="/baiviet/create"
+                                className="btn btn-primary"
+                            >
                                 + Thêm bài viết
                             </Link>
                         </div>

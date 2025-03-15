@@ -22,3 +22,15 @@ Route::get('/nhaphanphoi', function () {
         "user_name" => "John Doe",
     ]);
 });
+Route::get('/baiviet/create', function () {
+    return Inertia::render('AdminBaiviet/Create', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});
+Route::get('/login', function () {
+    return Inertia::render('AdminLogin/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});

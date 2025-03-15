@@ -10,6 +10,30 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/baiviet', function () {
+    return Inertia::render('AdminBaiviet/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});
+
+Route::get('/nhaphanphoi', function () {
+    return Inertia::render('AdminNCC/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});
+Route::get('/baiviet/create', function () {
+    return Inertia::render('AdminBaiviet/Create', [
+        "login" => true,
+        "user_name" => "John Doe",
+    ]);
+});
+Route::get('/login', function () {
+    return Inertia::render('AdminLogin/Index', [
+        "login" => true,
+        "user_name" => "John Doe",
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

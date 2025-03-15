@@ -1,5 +1,7 @@
 import React from "react";
+import Baiviet from "../../Components/Baiviet";
 import Layout from "@layouts/Index";
+
 // import Chart from "chart.js/auto";
 function Index() {
     // useEffect(() => {
@@ -171,6 +173,7 @@ function Index() {
                             </h5>
                             <div className="container-fluid">
                                 {/* Thay thế @include('page.Baiviet') bằng component React */}
+                                <Baiviet />
                                 <p className="text-white">
                                     Danh sách bài viết sẽ hiển thị ở đây
                                 </p>

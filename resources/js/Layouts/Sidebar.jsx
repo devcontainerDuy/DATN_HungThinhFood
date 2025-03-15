@@ -6,9 +6,9 @@ import NavLink from "@components/NavLink";
 
 const Sidebar = ({ children, collapsed }) => {
     return (
-        <div className="d-flex">
+        <div className="d-flex bg-dark text-white">
             <div
-                className={`d-flex flex-column flex-shrink-0 p-3 bg-light sticky-top`}
+                className={`d-flex flex-column flex-shrink-0 p-3  sticky-top`}
                 style={{ width: collapsed ? "80px" : "250px", height: "100vh" }}
             >
                 <Link
@@ -25,7 +25,7 @@ const Sidebar = ({ children, collapsed }) => {
                 <Nav className="nav nav-pills flex-column mb-auto">
                     <Nav.Item>
                         <NavLink
-                            to="/dashboard"
+                            href="/"
                             className="d-flex align-items-center"
                             active="true"
                         >
@@ -39,7 +39,7 @@ const Sidebar = ({ children, collapsed }) => {
                             className="d-flex align-items-center"
                         >
                             <i className="bi bi-file-earmark-text me-2"></i>
-                            {!collapsed && "Posts"}
+                            {!collapsed && "Thống kê"}
                         </NavLink>
                     </Nav.Item>
                     <Nav.Item>
@@ -48,16 +48,88 @@ const Sidebar = ({ children, collapsed }) => {
                             className="d-flex align-items-center"
                         >
                             <i className="bi bi-people me-2"></i>
-                            {!collapsed && "Users"}
+                            {!collapsed && "Quản lý người dùng"}
                         </NavLink>
                     </Nav.Item>
                     <Nav.Item>
                         <NavLink
-                            to="/settings"
+                            to="/sanpham"
                             className="d-flex align-items-center"
                         >
                             <i className="bi bi-gear me-2"></i>{" "}
-                            {!collapsed && "Settings"}
+                            {!collapsed && "Quản lý sản phẩm"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/danhmuc"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý danh mục"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            href="/nhaphanphoi"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý nhà cung cấp"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/khoiluong"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý khối lượng"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/nhanbanh"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý nhân bánh"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            href="/baiviet"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý bài viết"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/danhmucbaiviet"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý danh mục bài viết"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/donhang"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý Đơn hàng"}
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/binhluan"
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-gear me-2"></i>{" "}
+                            {!collapsed && "Quản lý bình luận"}
                         </NavLink>
                     </Nav.Item>
                 </Nav>
@@ -80,7 +152,7 @@ const Sidebar = ({ children, collapsed }) => {
                 >
                     <Dropdowns.Item href="/profile">Profile</Dropdowns.Item>
                     <Dropdowns.Item href="/settings">Settings</Dropdowns.Item>
-                    <Dropdowns.Item href="/logout">Sign out</Dropdowns.Item>
+                    <Dropdowns.Item href="/login">Sign in</Dropdowns.Item>
                 </Dropdowns>
             </div>
             <div className="flex-grow-1">{children}</div>

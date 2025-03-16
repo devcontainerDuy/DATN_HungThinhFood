@@ -8,7 +8,7 @@ const Sidebar = ({ children, collapsed }) => {
     return (
         <div className="d-flex bg-dark text-white">
             <div
-                className="d-flex flex-column flex-shrink-0 p-3  sticky-top"
+                className="d-flex flex-column flex-shrink-0 p-3 sticky-top bg-dark text-white"
                 style={{ width: collapsed ? "80px" : "250px", height: "100vh" }}
             >
                 <Link

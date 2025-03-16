@@ -30,6 +30,7 @@ Route::get('/baiviet/create', function () {
     ]);
 });
 
+/** Filemanager */
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
@@ -41,4 +42,8 @@ Route::get('/api/test', function () {
         "title" => "anh tâm bị khùng! haha",
         "completed" => false
     ]);
+});
+
+Route::middleware('web')->prefix('cms')->as('cms.')->group(function () {
+    Route::resource('users', App\Http\Controllers\User\UserController::class);
 });

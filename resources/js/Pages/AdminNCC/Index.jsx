@@ -3,7 +3,6 @@ import Layouts from "../../Layouts/Index";
 function Index() {
     return (
         <>
-            {" "}
             <Layouts
                 children={
                     <div className="container">

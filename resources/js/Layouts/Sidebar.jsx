@@ -8,7 +8,7 @@ const Sidebar = ({ children, collapsed }) => {
     return (
         <div className="d-flex bg-dark text-white">
             <div
-                className={`d-flex flex-column flex-shrink-0 p-3  sticky-top`}
+                className="d-flex flex-column flex-shrink-0 p-3  sticky-top"
                 style={{ width: collapsed ? "80px" : "250px", height: "100vh" }}
             >
                 <Link
@@ -22,7 +22,7 @@ const Sidebar = ({ children, collapsed }) => {
                     )}
                 </Link>
                 <hr />
-                <Nav className="nav nav-pills flex-column mb-auto">
+                <Nav variant="pills" className="flex-column mb-auto">
                     <Nav.Item>
                         <NavLink
                             href="/"

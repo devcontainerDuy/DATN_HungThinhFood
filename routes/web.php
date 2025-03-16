@@ -29,10 +29,6 @@ Route::get('/baiviet/create', function () {
         "user_name" => "John Doe",
     ]);
 });
-Route::get('/login', function () {
-    return Inertia::render('AdminLogin/Index', [
-        "login" => true,
-        "user_name" => "John Doe",
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

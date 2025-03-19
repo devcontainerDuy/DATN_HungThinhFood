@@ -12,15 +12,14 @@ function Create({ crum }) {
         email: "",
         phone: "",
         address: "",
-        gender : "",
+        gender: "",
         password: "",
     });
 
     const [show, setShow] = useState(false);
-    
+
     const handleShow = () => setShow(!show);
     const randomPassword = () => setValues({ ...values, password: generateRandom(8) });
-
 
     return (
         <>

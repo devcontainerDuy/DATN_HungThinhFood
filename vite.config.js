@@ -14,8 +14,10 @@ export default defineConfig({
             "@components": "/resources/js/Components",
             "@pages": "/resources/js/Pages",
             "@layouts": "/resources/js/Layouts",
+            "@hooks": "/resources/js/Hooks",
             "@css": "/resources/css",
             "@img": "/resources/img",
+            "@utils": "/resources/js/Utils",
         },
     },
 });

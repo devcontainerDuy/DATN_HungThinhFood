@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "@layouts/Sidebar";
 import Footer from "@layouts/Footer";
 import Header from "@layouts/Header";
 import Main from "@layouts/Main";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import { Toaster } from "react-hot-toast";
+import Spinner from "@components/Spinner";
 
 function Index({
     seo = {
@@ -17,12 +18,24 @@ function Index({
     breadcrumb,
     children,
 }) {
-    const [collapsed, setCollapsed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { url} = usePage();
 
-    const toggleSidebar = () => {
-        setCollapsed(!collapsed);
-    };
+  useEffect(() => {
+      setLoading(true);
+      const timer = setTimeout(() => {
+          setLoading(false);
+      }, 2000);
 
+      return () => clearTimeout(timer);
+  }, [url]);
+
+  if (loading) {
+      return <Spinner />;
+  }
+
+  console.log("URL", url);
+  
     return (
         <>
             <Head>
@@ -31,8 +44,8 @@ function Index({
                 <meta head-key="keywords" name="keywords" content={seo?.keywords || "CMS Dashboard"} />
             </Head>
             <Toaster position="top-center" reverseOrder={true} />
-            <Sidebar collapsed={collapsed}>
-                <Header collapsed={collapsed} toggleSidebar={toggleSidebar} />
+            <Sidebar >
+                <Header />
                 <Main type={typeBtn} url={href} breadcrumb={breadcrumb}>
                     {children}
                     {/* <button onClick={() => window.notify("promise", "This is a success message")}>Make me a toast</button> */}

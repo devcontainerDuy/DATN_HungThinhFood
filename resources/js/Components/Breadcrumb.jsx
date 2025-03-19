@@ -8,7 +8,7 @@ function Breadcrumb({ props, children }) {
 
     return (
         <Container className="p-0 my-3" fluid>
-            <div className="d-flex flex-wrap justify-content-md-between align-items-center text-dark bg-dark-subtle border-black border-2 rounded-3 p-2">
+            <div className="d-flex flex-wrap justify-content-md-between align-items-center bg-dark-subtle border-black border border-2 border-dark-subtle rounded-3 p-2 shadow">
                 <BCrumb aria-label="breadcrumb" className="mt-3 ms-3">
                     <BCrumb.Item href="/cms/" linkAs={Link} linkProps={{ to: "/cms/" }}>
                         <i className="bi bi-house-door-fill" width="16" height="16" />

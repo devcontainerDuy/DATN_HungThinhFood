@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table as Tab, Form, InputGroup } from "react-bootstrap";
 import Paginated from "@components/Paginated";
 import Buttons from "@components/Buttons";
+import PropTypes from "prop-types";
 
 function Table({ columns, data }) {
     const [d, setD] = useState([]);
@@ -22,16 +23,12 @@ function Table({ columns, data }) {
         setSearchQuery(e.target.value);
     };
 
-    const filteredData = d?.filter((row) =>
-        columns.some((col) =>
-            row[col.field]?.toString().toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    );
+    const filteredData = d?.filter((row) => columns.some((col) => row[col.field]?.toString().toLowerCase().includes(searchQuery.toLowerCase())));
 
     return (
-        <Tab className="caption-top" variant="dark" striped bordered hover responsive>
-            <caption className="text-light">
-                <div className="d-flex">
+        <Tab className="caption-top" striped bordered hover responsive>
+            <caption className="text-body">
+                <div className="d-flex border-bottom py-2">
                     <div className="my-auto">
                         <p className="fw-bold h3">
                             <span>Danh sách</span>
@@ -39,14 +36,7 @@ function Table({ columns, data }) {
                     </div>
                     <div className="ms-auto">
                         <InputGroup className="mb-3">
-                            <Form.Control
-                                type="search"
-                                placeholder="Tìm kiếm..."
-                                aria-label="search"
-                                aria-describedby="basic-addon1"
-                                value={searchQuery}
-                                onChange={handleSearch}
-                            />
+                            <Form.Control type="search" placeholder="Tìm kiếm..." aria-label="search" aria-describedby="basic-addon1" value={searchQuery} onChange={handleSearch} />
                             <Buttons variant="success" id="basic-addon1">
                                 <i className="bi bi-search" />
                             </Buttons>
@@ -103,3 +93,8 @@ function Table({ columns, data }) {
 }
 
 export default Table;
+
+Table.propTypes = {
+    columns: PropTypes.array.isRequired,
+    data: PropTypes.object.isRequired,
+};

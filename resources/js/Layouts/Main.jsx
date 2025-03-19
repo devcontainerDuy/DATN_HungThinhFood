@@ -56,7 +56,7 @@ function Main({ breadcrumb = [], type, url, children }) {
                         <Breadcrumb props={breadcrumb}>{type && typeButton()}</Breadcrumb>
                     </Col>
                     <Col>
-                        <div className="border-2 border-dark-subtle rounded-3 shadow p-4">{children}</div>
+                        <div className="border border-2 border-dark-subtle rounded-3 shadow p-4">{children}</div>
                     </Col>
                 </Row>
             </Container>

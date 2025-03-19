@@ -1,26 +1,20 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 
-const Dropdowns = ({
-    className,
-    trigger,
-    type = "button",
-    children,
-    align = "end",
-    ...props
-}) => {
+const Dropdowns = ({ className = "", title, type = "button", children, align = "end", ...props }) => {
     return (
-        <Dropdown align={align}>
-            <Dropdown.Toggle
-                className={"cursor-pointer " + className}
-                {...props}
-                type={type}
-            >
-                {trigger}
-            </Dropdown.Toggle>
-
+        <Dropdown align={align} {...props}>
+            {title}
             <Dropdown.Menu>{children}</Dropdown.Menu>
         </Dropdown>
+    );
+};
+
+const DropdownToggle = ({ as = "div", className = "", children, ...props }) => {
+    return (
+        <Dropdown.Toggle as={as} className={"cursor-pointer " + className} {...props}>
+            {children}
+        </Dropdown.Toggle>
     );
 };
 
@@ -32,6 +26,8 @@ const DropdownItem = ({ href, className = "", children, ...props }) => {
     );
 };
 
+Dropdowns.Toggle = DropdownToggle;
 Dropdowns.Item = DropdownItem;
+Dropdowns.Divider = Dropdown.Divider;
 
 export default Dropdowns;

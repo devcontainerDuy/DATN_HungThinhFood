@@ -1,5 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export default function InputLabel({
     value,
@@ -17,3 +18,9 @@ export default function InputLabel({
         </Form.Label>
     );
 }
+
+InputLabel.propTypes = {
+    value: PropTypes.string,
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};

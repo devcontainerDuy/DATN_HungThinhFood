@@ -1,3 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.ps-sidebar-container {
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-body-color) !important;
+}
+
+.ps-menu-button {
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-body-color) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ps-menu-button:hover {
+    background-color: var(--bs-secondary-bg) !important;
+    color: var(--bs-secondary-color) !important;
+}
+
+.ps-submenu-content .ps-menu-button:hover {
+    background-color: var(--bs-dark-bg-subtle) !important;
+    color: var(--bs-dark-text-emphasis) !important;
+}
+
+.ps-sidebar-container,
+.css-18unl23 {
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-body-color) !important;
+}
+
+[data-bs-theme="dark"] .ps-menu-button:hover {
+    background-color: var(--bs-gray-800) !important;
+    color: var(--bs-light) !important;
+}
+
+
+.ps-menu-button.ps-active {
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+    border-left: 4px solid var(--bs-info) !important;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ps-menu-button:hover {
+    background-color: var(--bs-secondary) !important;
+    color: white !important;
+}
+
+.sidebar-divider {
+    width: 100%;
+    border: 0;
+    height: 2px;
+    background-color: var(--bs-border-color);
+}
+
+.dropdown-custom::after {
+    display: none !important;
+}

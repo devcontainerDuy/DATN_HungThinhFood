@@ -1,11 +1,13 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export default function Buttons({
     className = "",
     variant = "dark",
-    disabled,
+    disabled = false,
     children,
+    loaded = false,
     ...props
 }) {
     return (
@@ -15,9 +17,21 @@ export default function Buttons({
             className={`text-uppercase ${
                 disabled ? "opacity-25" : ""
             } ${className}`}
-            disabled={disabled}
+            disabled={loaded || disabled}
         >
-            {children}
+            {loaded ? (
+                <Spinner animation="border" size="sm" role="status" aria-hidden="true"/>
+            ) : (
+                children
+            )}
         </Button>
     );
 }
+
+Buttons.propTypes = {
+    className: PropTypes.string,
+    variant: PropTypes.string,
+    disabled: PropTypes.bool,
+    children: PropTypes.node.isRequired,
+    loaded: PropTypes.bool,
+};

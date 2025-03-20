@@ -111,8 +111,14 @@ class UserController extends Controller
         $this->data = $request->validated();
         $this->instance = $this->model::find($id);
         try {
-            isset($this->data['password']) ?? $this->data['password'] = Hash::make($this->data['password']);
-            isset($this->data['roles']) ?? $this->instance->syncRoles(['name' => $this->data['roles']]);
+            if (!empty($this->data['roles'])) {
+                $this->instance->syncRoles($this->data['roles']);
+            } else unset($this->data['roles']);
+
+            if (!empty($this->data['password'])) {
+                $this->data['password'] = Hash::make($this->data['password']);
+            } else unset($this->data['password']);
+            
             $this->instance->update($this->data);
             return response()->json(['check' => true, 'message' => 'Cập nhật tài khoản thành công!'], 201);
         } catch (\Throwable $e) {

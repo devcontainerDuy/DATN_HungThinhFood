@@ -34,7 +34,7 @@ const useDeleteFrom = (url, setMeta) => {
                         } else {
                             Swal.fire({
                                 title: "Xóa không thành công!",
-                                text: response?.data?.message || "Có lỗi xảy ra.",
+                                text: response?.data?.message || "Không có gì xảy ra.",
                                 icon: "error",
                             });
                         }

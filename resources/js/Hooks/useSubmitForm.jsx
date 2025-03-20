@@ -28,7 +28,7 @@ const useSubmitForm = (url, handleChange) => {
                             handleChange();
                             return window.notify("success", response?.data?.message || "Thành công");
                         } else {
-                            return window.notify("error", response?.data?.message || "Có lỗi xảy ra");
+                            return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                         }
                     },
                     error: (error) => {

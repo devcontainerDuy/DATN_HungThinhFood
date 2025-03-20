@@ -3,6 +3,8 @@ export const getUpdatedValues = (values, initial) => {
     Object.keys(values).forEach((key) => {
         if (values[key] !== initial[key]) {
             update[key] = values[key];
+        } else {
+            delete update[key];
         }
     });
     return update;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 
-const useUpdateFrom = (url, setMeta) => {
+const useUpdateFrom = (url) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState([]);
 
@@ -25,16 +25,9 @@ const useUpdateFrom = (url, setMeta) => {
                     loading: "Đang xử lý...",
                     success: (response) => {
                         if (response.data?.check === true) {
-                            setMeta((prev) => {
-                                Object.keys(prev).reduce((acc, key) => {
-                                    acc[key] = data[key] || prev[key];
-                                    return acc;
-                                }, {});
-                            });
-
                             return window.notify("success", response?.data?.message || "Thành công");
                         } else {
-                            return window.notify("error", response?.data?.message || "Có lỗi xảy ra");
+                            return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                         }
                     },
                     error: (error) => {
@@ -53,5 +46,4 @@ export default useUpdateFrom;
 
 useUpdateFrom.propTypes = {
     url: PropTypes.string.isRequired,
-    setMeta: PropTypes.func.isRequired,
 };

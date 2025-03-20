@@ -2,54 +2,57 @@ import React from "react";
 import { Pagination } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-function Paginated({ current = 1, total = 1, handle }) {
+function Paginated({ meta, handle }) {
+    if (!meta || meta.total <= meta.per_page) return null;
+
+    const { current_page, last_page } = meta;
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, current_page - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(last_page, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
     return (
-        <>
-            <Pagination className="justify-content-center mt-2">
-                <Pagination.First linkClassName="text-body" onClick={() => handle(1)} disabled={current === 1} />
-                <Pagination.Prev linkClassName="text-body" onClick={() => handle(current > 1 ? current - 1 : 1)} disabled={current === 1} />
-                {current > 3 && (
-                    <>
-                        <Pagination.Item linkClassName="text-body" onClick={() => handle(1)}>
-                            1
-                        </Pagination.Item>
-                        <Pagination.Ellipsis linkClassName="text-body" />
-                    </>
-                )}
+        <Pagination className="justify-content-center mt-2">
+            <Pagination.First onClick={() => handle(1)} disabled={current_page === 1} />
+            <Pagination.Prev onClick={() => handle(Math.max(1, current_page - 1))} disabled={current_page === 1} />
 
-                {current > 1 && (
-                    <Pagination.Item linkClassName="text-body" onClick={() => handle(current - 1)}>
-                        {current - 1}
-                    </Pagination.Item>
-                )}
-                <Pagination.Item active linkClassName="text-bg-body border-body">
-                    {current}
+            {startPage > 1 && (
+                <>
+                    <Pagination.Item onClick={() => handle(1)}>1</Pagination.Item>
+                    {startPage > 2 && <Pagination.Ellipsis disabled />}
+                </>
+            )}
+
+            {Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index).map((page) => (
+                <Pagination.Item key={page} active={page === current_page} onClick={() => handle(page)}>
+                    {page}
                 </Pagination.Item>
-                {current < total && (
-                    <Pagination.Item linkClassName="text-body" onClick={() => handle(current + 1)}>
-                        {current + 1}
-                    </Pagination.Item>
-                )}
+            ))}
 
-                {current < total - 2 && (
-                    <>
-                        <Pagination.Ellipsis linkClassName="text-body" />
-                        <Pagination.Item linkClassName="text-body" onClick={() => handle(total)}>
-                            {total}
-                        </Pagination.Item>
-                    </>
-                )}
-                <Pagination.Next linkClassName="text-body" onClick={() => handle(current < total ? current + 1 : total)} disabled={current === total} />
-                <Pagination.Last linkClassName="text-body" onClick={() => handle(total)} disabled={current === total} />
-            </Pagination>
-        </>
+            {endPage < last_page && (
+                <>
+                    {endPage < last_page - 1 && <Pagination.Ellipsis disabled />}
+                    <Pagination.Item onClick={() => handle(last_page)}>{last_page}</Pagination.Item>
+                </>
+            )}
+
+            <Pagination.Next onClick={() => handle(Math.min(last_page, current_page + 1))} disabled={current_page === last_page} />
+            <Pagination.Last onClick={() => handle(last_page)} disabled={current_page === last_page} />
+        </Pagination>
     );
 }
 
-export default Paginated;
-
 Paginated.propTypes = {
-    current: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
+    meta: PropTypes.shape({
+        current_page: PropTypes.number.isRequired,
+        last_page: PropTypes.number.isRequired,
+        per_page: PropTypes.number.isRequired,
+        total: PropTypes.number.isRequired,
+    }).isRequired,
     handle: PropTypes.func.isRequired,
 };
+
+export default Paginated;

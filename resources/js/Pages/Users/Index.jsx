@@ -3,29 +3,49 @@ import Layouts from "@layouts/Index";
 import Table from "@components/Table";
 import Buttons from "@components/Buttons";
 import { Link } from "@inertiajs/react";
+import { formatDate } from "@utils/Format";
+import useDeleteFrom from "@hooks/useDeleteFrom";
 
 function Index({ users, trashs, role, crumbs }) {
     const [data, setData] = useState([]);
     const [crum, setCrum] = useState([]);
+    const { handleDelete } = useDeleteFrom("/cms/users", setData);
 
     const columns = [
         { field: "uid", headerName: "ID", width: 80 },
-        { field: "name", headerName: "Tên tài khoản", width: 200 },
+        { field: "username", headerName: "Tên tài khoản", width: 200 },
         { field: "email", headerName: "Địa chỉ mail", width: 200 },
         {
             field: "roles",
             headerName: "Loại tài khoản",
             width: 200,
+            renderCell: (params) => {
+                return isNaN(params.row.roles)
+                    ? params.row.roles.map((item, index) => {
+                          return (
+                              <span key={index} className="badge rounded-pill bg-secondary">
+                                  {item.name}
+                              </span>
+                          );
+                      })
+                    : "N/A";
+            },
         },
         {
-            field: "status",
-            headerName: "Trạng thái",
+            field: "phone",
+            headerName: "Số điện thoại",
             width: 180,
+            renderCell: (params) => {
+                return params.row.phone ? params.row.phone : "N/A";
+            },
         },
         {
             field: "created_at",
             headerName: "Ngày tạo",
             width: 200,
+            renderCell: (params) => {
+                return formatDate(params.row.created_at);
+            },
         },
         {
             field: "action",
@@ -38,7 +58,7 @@ function Index({ users, trashs, role, crumbs }) {
                             <Buttons as={Link} href={`/cms/users/${params.row.uid}/edit`} variant="warning">
                                 <i className="bi bi-pencil-square" />
                             </Buttons>
-                            <Buttons variant="danger" onClick={() => console.log("nhấn xóa: " + params.row.uid)}>
+                            <Buttons variant="danger" onClick={() => handleDelete(params.row.id)}>
                                 <i className="bi bi-trash" />
                             </Buttons>
                         </div>

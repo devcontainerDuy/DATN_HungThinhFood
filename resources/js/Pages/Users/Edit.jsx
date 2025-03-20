@@ -5,32 +5,46 @@ import InputLabel from "@components/InputLabel";
 import TextInput from "@components/TextInput";
 import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { generateRandom } from "@utils/Random";
-import useSubmitForm from "@hooks/useSubmitForm";
+import useUpdateFrom from "@hooks/useUpdateFrom";
+import { getUpdatedValues } from "@utils/Change";
 
-function Create({ roles, crumbs }) {
-    const [values, setValues] = useState({
-        username: "",
-        email: "",
-        phone: "",
-        address: "",
-        gender: 0,
-        password: "",
-        roles: [],
-        avatar: null,
-    });
+function Create({ users, roles, crumbs }) {
+    const [values, setValues] = useState({});
+    const [initial, setInitial] = useState([]);
+
     const [role, setRole] = useState([]);
     const [crum, setCrum] = useState([]);
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(!show);
     const randomPassword = () => setValues({ ...values, password: generateRandom(8) });
-    const handleChange = () => setValues({ username: "", email: "", phone: "", address: "", gender: 0, password: "", roles: [], avatar: null });
-    const { handleSubmit, loading, error } = useSubmitForm("/cms/users", handleChange);
+    const update = getUpdatedValues(values, initial);
+
+    const handlePass = () => {
+        if (update.password === undefined) {
+            setValues((prev) => ({ ...prev, password: "" }));
+        }
+        setValues((prev) => ({ ...prev, password: "" }));
+    };
+    const { handleSubmit, loading, error } = useUpdateFrom("/cms/users/" + users?.id, handlePass);
 
     useEffect(() => {
+        const data = {
+            username: users?.username || "",
+            email: users?.email || "",
+            phone: users?.phone || "",
+            address: users?.address || "",
+            gender: users?.gender || 0,
+            password: "",
+            roles: users?.roles.map((item) => item.name || "") || [],
+            avatar: users?.avatar || null,
+        };
+
+        setValues(data);
+        setInitial(data);
         setCrum(crumbs);
         setRole(roles);
-    }, [crumbs]);
+    }, [users, crumbs, roles]);
 
     return (
         <>
@@ -38,7 +52,7 @@ function Create({ roles, crumbs }) {
                 <div className="py-2 border-bottom">
                     <div className="my-auto py-2">
                         <p className="fw-bold h3">
-                            <span>Tạo mới</span>
+                            <span>Chỉnh sửa</span>
                         </p>
                     </div>
                 </div>
@@ -47,32 +61,19 @@ function Create({ roles, crumbs }) {
                     <div className="my-auto">
                         <Form as={Row} className="row-cols-1 py-4" noValidate>
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
-                                <InputLabel>
-                                    Tên người dùng
-                                    <span className="text-danger ms-2" title="Bắt buộc">
-                                        (*)
-                                    </span>
-                                </InputLabel>
+                                <InputLabel>Tên người dùng</InputLabel>
                                 <TextInput type="text" placeholder="John Doe" value={values?.username} onChange={(e) => setValues({ ...values, username: e.target.value })} />
                                 {error?.["username"] && <small className="text-danger">{error?.["username"]}</small>}
                             </Form.Group>
+
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
-                                <InputLabel>
-                                    Địa chỉ email
-                                    <span className="text-danger ms-2" title="Bắt buộc">
-                                        (*)
-                                    </span>
-                                </InputLabel>
+                                <InputLabel>Địa chỉ email</InputLabel>
                                 <TextInput type="email" placeholder="name@example.com" value={values?.email} onChange={(e) => setValues({ ...values, email: e.target.value })} />
                                 {error?.["email"] && <small className="text-danger">{error?.["email"]}</small>}
                             </Form.Group>
+
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
-                                <InputLabel>
-                                    Mật khẩu
-                                    <span className="text-danger ms-2" title="Bắt buộc">
-                                        (*)
-                                    </span>
-                                </InputLabel>
+                                <InputLabel>Mật khẩu</InputLabel>
                                 <InputGroup>
                                     <Buttons variant="primary" title="Tạo mật khẩu ngẫu nhiên" className="rounded-start" onClick={randomPassword}>
                                         <i className="bi bi-dice-5" />
@@ -112,12 +113,7 @@ function Create({ roles, crumbs }) {
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
-                                <InputLabel>
-                                    Quyền
-                                    <span className="text-danger ms-2" title="Bắt buộc">
-                                        (*)
-                                    </span>
-                                </InputLabel>
+                                <InputLabel>Quyền</InputLabel>
                                 <Form.Select value={values?.roles} onChange={(e) => setValues({ ...values, roles: [e.target.value] })} aria-label="multiple select roles">
                                     <option value="">Chọn quyền</option>
                                     {role.length > 0 &&
@@ -134,16 +130,13 @@ function Create({ roles, crumbs }) {
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
                                 <div className="d-flex justify-content-end gap-2">
-                                    <Buttons variant="secondary" type="reset" onClick={() => handleChange()} className="me-2">
-                                        <i className="bi bi-arrow-counterclockwise" /> Làm mới
-                                    </Buttons>
                                     <Buttons
                                         variant="success"
                                         className="me-2"
                                         type="submit"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            handleSubmit(values);
+                                            handleSubmit(update);
                                         }}
                                         loaded={loading}
                                     >

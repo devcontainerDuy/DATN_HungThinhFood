@@ -10,40 +10,39 @@ const notify = (type, message) => {
     switch (type) {
         case "success":
             toast.success((t) => (
-                <span>
-                    <span>{message}</span>
-                    <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
-                        <i className="bi bi-x-lg" />
-                    </button>
-                </span>
+                <div className="d-flex align-content-between">
+                    <span className="m-auto">{message}</span>
+                    <span className="m-auto">
+                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                            <i className="bi bi-x-lg" />
+                        </button>
+                    </span>
+                </div>
             ));
             break;
         case "error":
             toast.error((t) => (
-                <span>
-                    <span>{message}</span>
-                    <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
-                        <i className="bi bi-x-lg" />
-                    </button>
-                </span>
+                <div className="d-flex align-content-between">
+                    <span className="m-auto">{message}</span>
+                    <span className="m-auto">
+                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                            <i className="bi bi-x-lg" />
+                        </button>
+                    </span>
+                </div>
             ));
             break;
         case "loading":
             toast.loading((t) => (
-                <span>
-                    <span>{message}</span>
-                    <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
-                        <i className="bi bi-x-lg" />
-                    </button>
-                </span>
+                <div className="d-flex align-content-between">
+                    <span className="m-auto">{message}</span>
+                    <span className="m-auto">
+                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                            <i className="bi bi-x-lg" />
+                        </button>
+                    </span>
+                </div>
             ));
-            break;
-        case "promise":
-            toast.promise(new Promise((resolve, reject) => setTimeout(() => resolve("Thành công!"), 1000)), {
-                loading: "Đang tải...",
-                success: "Thành công!",
-                error: "Thất bại!",
-            });
             break;
         default:
             toast("Thông báo chung!", {

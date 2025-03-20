@@ -18,24 +18,22 @@ function Index({
     breadcrumb,
     children,
 }) {
-  const [loading, setLoading] = useState(false);
-  const { url} = usePage();
+    const [loading, setLoading] = useState(false);
+    const { url } = usePage();
 
-  useEffect(() => {
-      setLoading(true);
-      const timer = setTimeout(() => {
-          setLoading(false);
-      }, 2000);
+    useEffect(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
 
-      return () => clearTimeout(timer);
-  }, [url]);
+        return () => clearTimeout(timer);
+    }, [url]);
 
-  if (loading) {
-      return <Spinner />;
-  }
+    if (loading) {
+        return <Spinner />;
+    }
 
-  console.log("URL", url);
-  
     return (
         <>
             <Head>
@@ -44,11 +42,11 @@ function Index({
                 <meta head-key="keywords" name="keywords" content={seo?.keywords || "CMS Dashboard"} />
             </Head>
             <Toaster position="top-center" reverseOrder={true} />
-            <Sidebar >
+            <Sidebar>
                 <Header />
                 <Main type={typeBtn} url={href} breadcrumb={breadcrumb}>
                     {children}
-                    {/* <button onClick={() => window.notify("promise", "This is a success message")}>Make me a toast</button> */}
+                    {/* <button onClick={() => window.notify("success", "ok")}>Make me a toast</button> */}
                 </Main>
                 <Footer />
             </Sidebar>

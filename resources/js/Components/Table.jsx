@@ -3,21 +3,28 @@ import { Table as Tab, Form, InputGroup } from "react-bootstrap";
 import Paginated from "@components/Paginated";
 import Buttons from "@components/Buttons";
 import PropTypes from "prop-types";
+import { router, usePage } from "@inertiajs/react";
 
 function Table({ columns, data }) {
     const [d, setD] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(1);
+    const [meta, setMeta] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
-
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+    const { url } = usePage();
 
     useEffect(() => {
         setD(data?.data);
-        setTotalPage(data?.total);
+        setMeta({
+            current_page: data.current_page,
+            last_page: data.last_page,
+            per_page: data.per_page,
+            total: data.total,
+        });
     }, [data]);
+
+    const handleChange = (page) => {
+        setMeta((prevMeta) => ({ ...prevMeta, current_page: page }));
+        router.get(url, { page: page });
+    };
 
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
@@ -54,6 +61,7 @@ function Table({ columns, data }) {
                         ))}
                 </tr>
             </thead>
+            
             <tbody>
                 {filteredData?.length > 0 ? (
                     filteredData?.map((row, rowIndex) => (
@@ -73,17 +81,18 @@ function Table({ columns, data }) {
                     </tr>
                 )}
             </tbody>
+
             <tfoot>
                 <tr>
                     <td colSpan={columns?.length}>
                         <div className="d-flex justify-content-between px-3">
                             <div className="my-auto">
-                                <p className="m-0 fw-bold">
-                                    <span>Tổng số: </span>
-                                    <span>{filteredData?.length || 0}</span>
+                                <p className="m-0">
+                                    <strong>Tổng số mục:</strong> {meta?.total || 0} |<strong> Số mục trên mỗi trang:</strong> {meta?.per_page} |<strong> Tổng số trang:</strong> {meta?.last_page}
                                 </p>
                             </div>
-                            <Paginated current={currentPage} total={totalPage} handle={handlePageChange} />
+                            
+                            <Paginated meta={meta} handle={handleChange} />
                         </div>
                     </td>
                 </tr>

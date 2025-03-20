@@ -4,7 +4,7 @@ import Dropdowns from "@components/Dropdowns";
 import { useTheme } from "@hooks/useTheme";
 
 function Header() {
-    const [theme, toggleTheme] = useTheme();
+    const { theme, toggleTheme } = useTheme();
 
     const handleThemeChange = (newTheme) => {
         toggleTheme(newTheme);
@@ -78,7 +78,13 @@ function Header() {
                                 as={Nav.Item}
                                 title={
                                     <Dropdowns.Toggle className="dropdown-custom">
-                                        <Image className="img-fluid p-0 m-0" src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Avatar Logo" roundedCircle style={{ width: "32px", height: "auto" }} />
+                                        <Image
+                                            className="img-fluid p-0 m-0"
+                                            src="https://www.w3schools.com/bootstrap5/img_avatar1.png"
+                                            alt="Avatar Logo"
+                                            roundedCircle
+                                            style={{ width: "32px", height: "auto" }}
+                                        />
                                     </Dropdowns.Toggle>
                                 }
                                 align="end"

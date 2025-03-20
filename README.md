@@ -7,60 +7,81 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Giới thiệu
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Đây là dự án tốt nghiệp của sinh viên trường Cao đẳng FPT Polytechnic. Dự án này được xây dựng bằng Laravel, một framework PHP mạnh mẽ và dễ sử dụng. Mục tiêu của dự án là xây dựng một hệ thống quản lý bài viết và người dùng với các tính năng như phân trang, tìm kiếm, và thông báo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Các tính năng chính
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Quản lý người dùng**: Thêm, sửa, xóa và phân quyền người dùng.
+- **Quản lý bài viết**: Thêm, sửa, xóa và tìm kiếm bài viết.
+- **Phân trang**: Sử dụng phân trang để hiển thị danh sách người dùng và bài viết.
+- **Thông báo**: Sử dụng `react-hot-toast` để hiển thị thông báo cho người dùng.
+- **Tìm kiếm**: Tìm kiếm người dùng và bài viết theo từ khóa.
 
-## Learning Laravel
+## Công nghệ sử dụng
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Laravel**: Framework PHP mạnh mẽ và dễ sử dụng.
+- **React**: Thư viện JavaScript để xây dựng giao diện người dùng.
+- **Bootstrap**: Framework CSS để xây dựng giao diện người dùng đẹp và responsive.
+- **Axios**: Thư viện JavaScript để thực hiện các yêu cầu HTTP.
+- **react-hot-toast**: Thư viện JavaScript để hiển thị thông báo.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Cài đặt
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone repository về máy của bạn:
+    ```bash
+    git clone https://github.com/your-username/your-repository.git
+    ```
 
-## Laravel Sponsors
+2. Cài đặt các package PHP:
+    ```bash
+    composer install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Cài đặt các package JavaScript:
+    ```bash
+    npm install
+    ```
 
-### Premium Partners
+4. Tạo file `.env` từ file `.env.example` và cấu hình các thông số cần thiết:
+    ```bash
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. Tạo khóa ứng dụng:
+    ```bash
+    php artisan key:generate
+    ```
 
-## Contributing
+6. Chạy các migration để tạo các bảng trong cơ sở dữ liệu:
+    ```bash
+    php artisan migrate
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. Chạy server:
+    ```bash
+    php artisan serve
+    ```
 
-## Code of Conduct
+8. Chạy Webpack để biên dịch các file JavaScript và CSS:
+    ```bash
+    npm run dev
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Sử dụng
 
-## Security Vulnerabilities
+- Truy cập vào `http://localhost:8000` để xem ứng dụng.
+- Đăng nhập bằng tài khoản quản trị viên để quản lý người dùng và bài viết.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Đóng góp
 
-## License
+Cảm ơn bạn đã quan tâm đến việc đóng góp cho dự án này! Hướng dẫn đóng góp có thể được tìm thấy trong tài liệu [Laravel documentation](https://laravel.com/docs/contributions).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Bảo mật
+
+Nếu bạn phát hiện ra lỗ hổng bảo mật trong Laravel, vui lòng gửi email tới Taylor Otwell qua [taylor@laravel.com](mailto:taylor@laravel.com). Tất cả các lỗ hổng bảo mật sẽ được giải quyết kịp thời.
+
+## Giấy phép
+
+Framework Laravel là phần mềm mã nguồn mở được cấp phép theo [MIT license](https://opensource.org/licenses/MIT).

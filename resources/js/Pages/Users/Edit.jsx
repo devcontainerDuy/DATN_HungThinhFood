@@ -26,7 +26,7 @@ function Create({ users, roles, crumbs }) {
         }
         setValues((prev) => ({ ...prev, password: "" }));
     };
-    const { handleSubmit, loading, error } = useUpdateFrom("/cms/users/" + users?.id, handlePass);
+    const { handleSubmit, loading, error } = useUpdateFrom(`/cms/users/${users.id}`, handlePass);
 
     useEffect(() => {
         const data = {
@@ -63,13 +63,13 @@ function Create({ users, roles, crumbs }) {
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
                                 <InputLabel>Tên người dùng</InputLabel>
                                 <TextInput type="text" placeholder="John Doe" value={values?.username} onChange={(e) => setValues({ ...values, username: e.target.value })} />
-                                {error?.["username"] && <small className="text-danger">{error?.["username"]}</small>}
+                                {error?.username && <small className="text-danger">{error?.username}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
                                 <InputLabel>Địa chỉ email</InputLabel>
                                 <TextInput type="email" placeholder="name@example.com" value={values?.email} onChange={(e) => setValues({ ...values, email: e.target.value })} />
-                                {error?.["email"] && <small className="text-danger">{error?.["email"]}</small>}
+                                {error?.email && <small className="text-danger">{error?.email}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
@@ -90,7 +90,7 @@ function Create({ users, roles, crumbs }) {
                                         <i className={show ? "bi bi-eye-slash" : "bi bi-eye"} />
                                     </Buttons>
                                 </InputGroup>
-                                {error?.["password"] && <small className="text-danger">{error?.["password"]}</small>}
+                                {error?.password && <small className="text-danger">{error?.password}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
@@ -117,15 +117,15 @@ function Create({ users, roles, crumbs }) {
                                 <Form.Select value={values?.roles} onChange={(e) => setValues({ ...values, roles: [e.target.value] })} aria-label="multiple select roles">
                                     <option value="">Chọn quyền</option>
                                     {role.length > 0 &&
-                                        role.map((item, index) => {
+                                        role.map((item, _) => {
                                             return (
-                                                <option key={index} value={item.name}>
+                                                <option key={item.id} value={item.name}>
                                                     {item.name}
                                                 </option>
                                             );
                                         })}
                                 </Form.Select>
-                                {error?.["roles"] && <small className="text-danger">{error?.["roles"]}</small>}
+                                {error?.roles && <small className="text-danger">{error?.roles}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>

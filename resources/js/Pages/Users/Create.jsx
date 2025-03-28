@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useId, useState } from "react";
 import Layouts from "@layouts/Index";
 import Buttons from "@components/Buttons";
 import InputLabel from "@components/InputLabel";
@@ -18,19 +18,14 @@ function Create({ roles, crumbs }) {
         roles: [],
         avatar: null,
     });
-    const [role, setRole] = useState([]);
-    const [crum, setCrum] = useState([]);
+    const [role, setRole] = useState(roles || []);
+    const [crum, setCrum] = useState(crumbs || []);
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(!show);
     const randomPassword = () => setValues({ ...values, password: generateRandom(8) });
     const handleChange = () => setValues({ username: "", email: "", phone: "", address: "", gender: 0, password: "", roles: [], avatar: null });
     const { handleSubmit, loading, error } = useSubmitForm("/cms/users", handleChange);
-
-    useEffect(() => {
-        setCrum(crumbs);
-        setRole(roles);
-    }, [crumbs]);
 
     return (
         <>
@@ -54,7 +49,7 @@ function Create({ roles, crumbs }) {
                                     </span>
                                 </InputLabel>
                                 <TextInput type="text" placeholder="John Doe" value={values?.username} onChange={(e) => setValues({ ...values, username: e.target.value })} />
-                                {error?.["username"] && <small className="text-danger">{error?.["username"]}</small>}
+                                {error?.username && <small className="text-danger">{error?.username}</small>}
                             </Form.Group>
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
                                 <InputLabel>
@@ -64,7 +59,7 @@ function Create({ roles, crumbs }) {
                                     </span>
                                 </InputLabel>
                                 <TextInput type="email" placeholder="name@example.com" value={values?.email} onChange={(e) => setValues({ ...values, email: e.target.value })} />
-                                {error?.["email"] && <small className="text-danger">{error?.["email"]}</small>}
+                                {error?.email && <small className="text-danger">{error?.email}</small>}
                             </Form.Group>
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
                                 <InputLabel>
@@ -89,7 +84,7 @@ function Create({ roles, crumbs }) {
                                         <i className={show ? "bi bi-eye-slash" : "bi bi-eye"} />
                                     </Buttons>
                                 </InputGroup>
-                                {error?.["password"] && <small className="text-danger">{error?.["password"]}</small>}
+                                {error?.password && <small className="text-danger">{error?.password}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>
@@ -121,15 +116,15 @@ function Create({ roles, crumbs }) {
                                 <Form.Select value={values?.roles} onChange={(e) => setValues({ ...values, roles: [e.target.value] })} aria-label="multiple select roles">
                                     <option value="">Chọn quyền</option>
                                     {role.length > 0 &&
-                                        role.map((item, index) => {
+                                        role.map((item) => {
                                             return (
-                                                <option key={index} value={item.name}>
+                                                <option key={item.id} value={item.name}>
                                                     {item.name}
                                                 </option>
                                             );
                                         })}
                                 </Form.Select>
-                                {error?.["roles"] && <small className="text-danger">{error?.["roles"]}</small>}
+                                {error?.roles && <small className="text-danger">{error?.roles}</small>}
                             </Form.Group>
 
                             <Form.Group as={Col} className="mb-3" controlId={`input-field-${useId()}`}>

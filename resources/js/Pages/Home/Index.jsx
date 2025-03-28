@@ -1,5 +1,4 @@
 import React from "react";
-import Baiviet from "../../Components/Baiviet";
 import Layout from "@layouts/Index";
 
 // import Chart from "chart.js/auto";
@@ -67,17 +66,12 @@ function Index() {
 
     return (
         <Layout>
-            <div
-                className="container-fluid p-4"
-                style={{ backgroundColor: "#161824" }}
-            >
+            <div className="container-fluid p-4" style={{ backgroundColor: "#161824" }}>
                 <div className="container-fluid mt-4">
                     <div className="container-fluid mb-4 p-0">
                         <div className="container-fluid d-flex justify-content-end align-items-center flex-column p-0">
                             <h1 className="text-white">Xin chào, Tâm</h1>
-                            <p className="text-white">
-                                Chúc bạn một ngày tốt lành
-                            </p>
+                            <p className="text-white">Chúc bạn một ngày tốt lành</p>
                         </div>
                     </div>
                     <h2 className="text-white mb-4">Trang Dashboard</h2>
@@ -105,24 +99,18 @@ function Index() {
                                 value: "6",
                                 label: "Đơn hàng mới",
                             },
-                        ].map((item, index) => (
-                            <div className="col-md-3 mb-3" key={index}>
+                        ].map((item) => (
+                            <div className="col-md-3 mb-3" key={item.label}>
                                 <div className="card bg-dark p-3">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="container-fluid">
-                                            <i
-                                                className={`bi ${item.icon} text-success fs-1`}
-                                            ></i>
+                                            <i className={`bi ${item.icon} text-success fs-1`} />
                                         </div>
                                         <div className="container-fluid d-flex align-items-start flex-column gap-1">
-                                            <span className="text-white fs-1">
-                                                {item.value}
-                                            </span>
+                                            <span className="text-white fs-1">{item.value}</span>
+                                            <span className="text-white">{item.label}</span>
                                             <span className="text-white">
-                                                {item.label}
-                                            </span>
-                                            <span className="text-white">
-                                                <i className="bi bi-graph-up-arrow text-success"></i>{" "}
+                                                <i className="bi bi-graph-up-arrow text-success" />
                                                 Tăng
                                             </span>
                                         </div>
@@ -134,61 +122,33 @@ function Index() {
 
                     {/* Biểu đồ */}
                     <div className="row mt-3 mb-3 gap-4">
-                        <div
-                            className="col-md-9 bg-dark rounded p-3 ml-3"
-                            style={{ width: "74.2%" }}
-                        >
-                            <h5 className="text-white">
-                                Thống kê số lượng đơn hàng
-                            </h5>
+                        <div className="col-md-9 bg-dark rounded p-3 ml-3" style={{ width: "74.2%" }}>
+                            <h5 className="text-white">Thống kê số lượng đơn hàng</h5>
                             <div className="container-fluid">
-                                <canvas
-                                    id="myChart"
-                                    style={{ width: "100%", maxWidth: "100%" }}
-                                ></canvas>
+                                <canvas id="myChart" style={{ width: "100%", maxWidth: "100%" }} />
                             </div>
                         </div>
 
-                        <div
-                            className="col-md-3 card bg-dark rounded p-3"
-                            style={{ width: "23%" }}
-                        >
-                            <h4 className="text-white">
-                                Danh sách khách hàng mới
-                            </h4>
-                            <p className="text-white">
-                                Hiển thị các khách hàng mới đăng ký
-                            </p>
+                        <div className="col-md-3 card bg-dark rounded p-3" style={{ width: "23%" }}>
+                            <h4 className="text-white">Danh sách khách hàng mới</h4>
+                            <p className="text-white">Hiển thị các khách hàng mới đăng ký</p>
                         </div>
                     </div>
 
                     {/* Bài viết và danh mục */}
                     <div className="row mt-3 mb-3 gap-4">
-                        <div
-                            className="col-md-9 bg-dark rounded p-3 ml-3"
-                            style={{ width: "74.2%" }}
-                        >
-                            <h5 className="text-white">
-                                📊Thống kê số bài viết
-                            </h5>
+                        <div className="col-md-9 bg-dark rounded p-3 ml-3" style={{ width: "74.2%" }}>
+                            <h5 className="text-white">📊Thống kê số bài viết</h5>
                             <div className="container-fluid">
                                 {/* Thay thế @include('page.Baiviet') bằng component React */}
                                 <Baiviet />
-                                <p className="text-white">
-                                    Danh sách bài viết sẽ hiển thị ở đây
-                                </p>
+                                <p className="text-white">Danh sách bài viết sẽ hiển thị ở đây</p>
                             </div>
                         </div>
 
-                        <div
-                            className="col-md-3 card bg-dark rounded p-3"
-                            style={{ width: "23%" }}
-                        >
+                        <div className="col-md-3 card bg-dark rounded p-3" style={{ width: "23%" }}>
                             <h4 className="text-white">Danh sách danh mục</h4>
-                            <p className="text-white">
-                                Hiển thị số lượng sản phẩm đang có trong danh
-                                mục
-                            </p>
+                            <p className="text-white">Hiển thị số lượng sản phẩm đang có trong danh mục</p>
                         </div>
                     </div>
                 </div>

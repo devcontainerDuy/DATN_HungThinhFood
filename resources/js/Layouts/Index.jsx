@@ -3,7 +3,7 @@ import Sidebar from "@layouts/Sidebar";
 import Footer from "@layouts/Footer";
 import Header from "@layouts/Header";
 import Main from "@layouts/Main";
-import { Head, usePage } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import { Toaster } from "react-hot-toast";
 import Spinner from "@components/Spinner";
 
@@ -19,16 +19,15 @@ function Index({
     children,
 }) {
     const [loading, setLoading] = useState(false);
-    const { url } = usePage();
 
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 2000);
+        }, 1500);
 
         return () => clearTimeout(timer);
-    }, [url]);
+    }, []);
 
     if (loading) {
         return <Spinner />;

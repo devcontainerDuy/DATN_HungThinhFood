@@ -20,10 +20,10 @@ function Index({ users, trashs, role, crumbs }) {
             headerName: "Loại tài khoản",
             width: 200,
             renderCell: (params) => {
-                return isNaN(params.row.roles)
-                    ? params.row.roles.map((item, index) => {
+                return Number.isNaN(params.row.roles)
+                    ? params.row.roles.map((item, _) => {
                           return (
-                              <span key={index} className="badge rounded-pill bg-secondary">
+                              <span key={item.id} className="badge rounded-pill bg-secondary">
                                   {item.name}
                               </span>
                           );

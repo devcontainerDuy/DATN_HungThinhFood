@@ -14,16 +14,13 @@ function Table({ columns, data }) {
     useEffect(() => {
         setD(data?.data);
         setMeta({
-            current_page: data.current_page,
-            last_page: data.last_page,
-            per_page: data.per_page,
-            total: data.total,
+            next_cursor: data.next_cursor,
+            prev_cursor: data.prev_cursor,
         });
     }, [data]);
 
-    const handleChange = (page) => {
-        setMeta((prevMeta) => ({ ...prevMeta, current_page: page }));
-        router.get(url, { page: page });
+    const handleChange = (cursor) => {
+        router.get(url, { cursor: cursor });
     };
 
     const handleSearch = (e) => {
@@ -53,21 +50,22 @@ function Table({ columns, data }) {
             </caption>
             <thead>
                 <tr>
-                    {columns &&
-                        columns?.map((col, index) => (
-                            <th key={index} style={{ width: col?.width }}>
-                                {col?.headerName}
-                            </th>
-                        ))}
+                    {columns?.map((col) => (
+                        <th key={col?.field} style={{ width: col?.width }}>
+                            {col?.headerName}
+                        </th>
+                    ))}
                 </tr>
             </thead>
-            
-            <tbody>
+
+            <tbody className="table-group-divider">
                 {filteredData?.length > 0 ? (
-                    filteredData?.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {columns?.map((col, colIndex) => (
-                                <td key={colIndex}>{col?.renderCell ? col?.renderCell({ row }) : row[col?.field]}</td>
+                    filteredData?.map((row) => (
+                        <tr key={row.id}>
+                            {columns?.map((col) => (
+                                <td key={col.field} style={{ width: col?.width }}>
+                                    {col?.renderCell ? col?.renderCell({ row }) : row[col?.field]}
+                                </td>
                             ))}
                         </tr>
                     ))
@@ -88,10 +86,10 @@ function Table({ columns, data }) {
                         <div className="d-flex justify-content-between px-3">
                             <div className="my-auto">
                                 <p className="m-0">
-                                    <strong>Tổng số mục:</strong> {meta?.total || 0} |<strong> Số mục trên mỗi trang:</strong> {meta?.per_page} |<strong> Tổng số trang:</strong> {meta?.last_page}
+                                    <strong>Số mục trên mỗi trang:</strong> {data?.per_page}
                                 </p>
                             </div>
-                            
+
                             <Paginated meta={meta} handle={handleChange} />
                         </div>
                     </td>

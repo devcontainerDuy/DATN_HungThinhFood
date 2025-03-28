@@ -24,14 +24,16 @@ const useSubmitForm = (url, handleChange) => {
                 {
                     loading: "Đang xử lý...",
                     success: (response) => {
+                        console.log(response);
+                        
                         if (response.data?.check === true) {
-                            handleChange();
+                            handleChange() || null;
                             return window.notify("success", response?.data?.message || "Thành công");
-                        } else {
-                            return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                         }
+                        return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                     },
                     error: (error) => {
+                        console.log(error);
                         setError(error?.response?.data?.errors);
                         return window.notify("error", error?.response?.data?.message || "Có lỗi xảy ra");
                     },

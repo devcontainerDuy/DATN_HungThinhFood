@@ -13,7 +13,7 @@ const notify = (type, message) => {
                 <div className="d-flex align-content-between">
                     <span className="m-auto">{message}</span>
                     <span className="m-auto">
-                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                        <button type="button" className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
                             <i className="bi bi-x-lg" />
                         </button>
                     </span>
@@ -25,7 +25,7 @@ const notify = (type, message) => {
                 <div className="d-flex align-content-between">
                     <span className="m-auto">{message}</span>
                     <span className="m-auto">
-                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                        <button type="button" className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
                             <i className="bi bi-x-lg" />
                         </button>
                     </span>
@@ -37,7 +37,7 @@ const notify = (type, message) => {
                 <div className="d-flex align-content-between">
                     <span className="m-auto">{message}</span>
                     <span className="m-auto">
-                        <button className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
+                        <button type="button" className="btn btn-sm btn-secondary ms-2" onClick={() => toast.dismiss(t.id)}>
                             <i className="bi bi-x-lg" />
                         </button>
                     </span>

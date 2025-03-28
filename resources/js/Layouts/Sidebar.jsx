@@ -50,6 +50,12 @@ const Sidebar = ({ children }) => {
                         <MenuItem icon={<i className="bi bi-plus-circle" />} component={<NavLink href="/cms/users/create" />} active={url === "/cms/users/create"} title="Tạo mới">
                             Tạo mới
                         </MenuItem>
+                        <MenuItem icon={<i className="bi bi-person-check" />} component={<NavLink href="/cms/roles" />} active={url === "/cms/roles"} title="Quản lý vai trò">
+                            Quản lý vai trò
+                        </MenuItem>
+                        <MenuItem icon={<i className="bi bi-person-badge" />} component={<NavLink href="/cms/permissions" />} active={url === "/cms/permissions"} title="Quản lý quyền">
+                            Quản lý quyền
+                        </MenuItem>
                     </SubMenu>
 
                     <SubMenu label="Quản lý nhà cung cấp" icon={<i className="bi bi-person-badge" />} title="Quản lý nhà cung cấp">

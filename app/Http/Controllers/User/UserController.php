@@ -31,7 +31,7 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/Index', [
-            'users' => $this->model::with('roles')->paginate(20),
+            'users' => $this->model::with('roles')->cursorPaginate(20)->withQueryString(),
             'trashs' => $this->model::with('roles')->onlyTrashed()->get(),
             'role' => $this->role::select('id', 'name')->get(),
             'crumbs' => [
@@ -75,7 +75,7 @@ class UserController extends Controller
             // Mail::to($request->input('email'))->send(new createUser($dataMail));
             return response()->json(['check' => true, 'message' => 'Tạo tài khoản thành công!'], 201);
         }
-        return response()->json(['check' => false, 'message' => 'Tạo tài khoản thất bại!'], 400);
+        return response()->json(['check' => false, 'message' => 'Tạo tài khoản thất bại!'], 401);
     }
 
     /**

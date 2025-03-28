@@ -6,6 +6,8 @@ const useUpdateFrom = (url, handleChange) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState([]);
 
+    const handle = handleChange || (() => {});
+
     const handleSubmit = async ({ ...data }) => {
         setLoading(true);
         setError([]);
@@ -15,11 +17,10 @@ const useUpdateFrom = (url, handleChange) => {
                 loading: "Đang xử lý...",
                 success: (response) => {
                     if (response.data?.check === true) {
-                        handleChange();
+                        handle();
                         return window.notify("success", response?.data?.message || "Thành công");
-                    } else {
-                        return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                     }
+                    return window.notify("error", response?.data?.message || "Không có gì xảy ra");
                 },
                 error: (error) => {
                     setError(error?.response?.data?.errors);
@@ -36,5 +37,5 @@ export default useUpdateFrom;
 
 useUpdateFrom.propTypes = {
     url: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 };
